@@ -1,4 +1,4 @@
-package com.nrdio.authserver.authorizationserver;
+package com.nrdio.authorizationserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
