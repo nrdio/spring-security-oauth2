@@ -1,0 +1,15 @@
+jdbc:
+  driverClassName: org.h2.Driver
+  jdbcUrl: jdbc:h2:mem:oauth2
+  userName: sa
+  pass:
+
+spring:
+  datasource:
+    platform: h2
+    initialization-mode: always
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
