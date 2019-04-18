@@ -1,0 +1,13 @@
+security:
+  oauth2:
+    client:
+      client-id: clientx
+      client-secret: password
+
+    resource:
+      token-info-uri: http://localhost:8085/oauth/check_token
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
