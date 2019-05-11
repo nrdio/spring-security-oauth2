@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+  sleuth:
+    sampler:
+      probability: 1
+
+routes:
+  authorization: http://localhost:8085
+  resource: http://localhost:8086
