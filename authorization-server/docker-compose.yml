@@ -17,9 +17,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=changeit
   authorization-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     depends_on:
       - mysql
     ports:
