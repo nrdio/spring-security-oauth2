@@ -11,5 +11,5 @@ logging:
       probability: 1
 
 routes:
-  authorization: http://localhost:8085
-  resource: http://localhost:8086
+  authorization: http://${AUTHORIZATION_SERVER_HOST:localhost}:8085
+  resource: http://${RESOURCE_SERVER_HOST:localhost}:8086
