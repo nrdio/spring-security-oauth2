@@ -24,8 +24,7 @@ public class RouteLocatorConfiguration {
                                 .setFallbackUri("forward:/timeout")))
                         .uri(routeConfiguration.getAuthorizationServerUri()))
                 .route(p -> p
-                        .path("/oauth/token/re" +
-                                "voke")
+                        .path("/oauth/token/revoke")
                         .filters(filter -> filter.hystrix(config -> config
                                 .setFallbackUri("forward:/timeout")))
                         .uri(routeConfiguration.getAuthorizationServerUri()))

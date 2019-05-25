@@ -1,0 +1,8 @@
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+routes:
+  authorization: http://localhost:8885
+  resource: http://localhost:8885
