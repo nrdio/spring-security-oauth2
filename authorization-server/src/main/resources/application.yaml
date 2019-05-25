@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: ${AUTHORIZATION_SERVER_PORT:8085}
 
 spring:
   application:
