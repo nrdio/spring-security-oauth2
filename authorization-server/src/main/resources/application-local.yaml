@@ -6,7 +6,7 @@ jdbc:
 logging:
   level:
     org:
-      springframework: INFO
+      springframework: DEBUG
 
 spring:
   datasource:

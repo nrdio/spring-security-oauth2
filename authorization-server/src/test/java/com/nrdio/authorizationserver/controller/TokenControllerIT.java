@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-public class TokenControllerTest {
+public class TokenControllerIT {
 
     private static final String CLIENT_ID = "clienty";
     private static final String CLIENT_SECRET = "password";

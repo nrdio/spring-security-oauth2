@@ -10,7 +10,7 @@ security:
       client-secret: password
 
     resource:
-      token-info-uri: http://localhost:8085/oauth/check_token
+      token-info-uri: http://${AUTHORIZATION_SERVER_HOST:localhost}:${AUTHORIZATION_SERVER_PORT:8085}/oauth/check_token
       prefer-token-info: true
 
   sleuth:

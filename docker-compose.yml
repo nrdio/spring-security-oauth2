@@ -1,0 +1,76 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-db:/var/lib/mysql
+    ports:
+      - 3307:3306
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.1.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=changeit
+      - MYSQL_DATABASE=oauth2
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=changeit
+  authorization-server:
+    build:
+      context: ./authorization-server
+    depends_on:
+      - mysql
+    ports:
+      - 8085:8085
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.1.3
+    environment:
+      - DATABASE_HOST=10.5.1.2
+      - DATABASE_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=changeit
+      - MYSQL_DATABASE=oauth2
+      - SPRING_PROFILES_ACTIVE=local
+      - AUTHORIZATION_SERVER_PORT=8085
+  resource-server:
+    build:
+      context: ./resource-server
+    depends_on:
+      - authorization-server
+    ports:
+      - 8086:8086
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.1.4
+    environment:
+      - AUTHORIZATION_SERVER_HOST=10.5.1.3
+      - AUTHORIZATION_SERVER_PORT=8085
+      - RESOURCE_SERVER_PORT=8086
+      - SPRING_PROFILES_ACTIVE=local
+  api-gateway:
+    build:
+      context: ./api-gateway
+    depends_on:
+      - resource-server
+    ports:
+      - 8888:8888
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.1.5
+    environment:
+      - AUTHORIZATION_SERVER_HOST=10.5.1.3
+      - AUTHORIZATION_SERVER_PORT=8085
+      - RESOURCE_SERVER_HOST=10.5.1.4
+      - RESOURCE_SERVER_PORT=8086
+      - API_GATEWAY_PORT=8888
+      - SPRING_PROFILES_ACTIVE=local
+volumes:
+  mysql-db:
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.1.0/16

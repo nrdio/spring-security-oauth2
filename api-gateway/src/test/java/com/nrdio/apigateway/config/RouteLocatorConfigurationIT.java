@@ -21,7 +21,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 8885)
 @ActiveProfiles("test")
-public class RouteLocatorConfigurationTest {
+public class RouteLocatorConfigurationIT {
 
     @Value("${local.server.port}")
     int port;
