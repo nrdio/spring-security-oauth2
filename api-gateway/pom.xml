@@ -82,6 +82,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -136,5 +137,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

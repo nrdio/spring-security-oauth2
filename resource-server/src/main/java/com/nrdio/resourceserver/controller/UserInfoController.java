@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-public class UserController {
+public class UserInfoController {
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @RequestMapping(method = RequestMethod.GET, value = "/userinfo", produces = {MediaType.APPLICATION_JSON_VALUE})

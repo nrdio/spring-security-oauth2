@@ -24,8 +24,8 @@ import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-public class UserControllerIT {
+@ActiveProfiles("at")
+public class UserInfoControllerAT {
 
     private static final String CLIENT_ID = "clientx";
     private static final String CLIENT_SECRET = "password";
