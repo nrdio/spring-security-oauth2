@@ -5,7 +5,7 @@ REPLACE INTO oauth_client_details
 	refresh_token_validity, additional_information, autoapprove)
 VALUES ('clientx',
         '$2a$10$TYaGY7tqqM9kwdBJg9GOresSf/orSMGU5dy.Dmu75ARASx7L0LovG', 'payments,accounts',
-        'password,authorization_code,refresh_token,client_credentials,implicit', 'https://localhost:8080/oauth',
+        'password,authorization_code,refresh_token,client_credentials', 'https://localhost:8080/oauth',
         'read,write', 28800, 86400, null, true);
 
 -- empty password

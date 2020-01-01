@@ -28,5 +28,4 @@ public class RevokeTokenController {
         revokeTokenService.revokeToken(tokenTypeHint, token, principal.getName());
     }
 
-
 }
