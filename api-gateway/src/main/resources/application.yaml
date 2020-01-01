@@ -7,3 +7,5 @@ spring:
       enabled: true
   application:
     name: api-gateway
+  zipkin:
+    base-url: http://${ZIPKIN_SERVER_HOST:localhost}:${ZIPKIN_SERVER_PORT:9411}

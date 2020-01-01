@@ -3,6 +3,7 @@ logging:
     org:
       springframework: DEBUG
 
+spring:
   sleuth:
     sampler:
       probability: 1

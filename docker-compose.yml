@@ -35,6 +35,8 @@ services:
       - MYSQL_DATABASE=oauth2
       - SPRING_PROFILES_ACTIVE=local
       - AUTHORIZATION_SERVER_PORT=8085
+      - ZIPKIN_SERVER_HOST=10.5.1.6
+      - ZIPKIN_SERVER_PORT=9411
   resource-server:
     build:
       context: ./resource-server
@@ -50,6 +52,8 @@ services:
       - AUTHORIZATION_SERVER_PORT=8085
       - RESOURCE_SERVER_PORT=8086
       - SPRING_PROFILES_ACTIVE=local
+      - ZIPKIN_SERVER_HOST=10.5.1.6
+      - ZIPKIN_SERVER_PORT=9411
   api-gateway:
     build:
       context: ./api-gateway
@@ -63,19 +67,23 @@ services:
     environment:
       - AUTHORIZATION_SERVER_HOST=10.5.1.3
       - AUTHORIZATION_SERVER_PORT=8085
+      - ZIPKIN_SERVER_HOST=10.5.1.6
+      - ZIPKIN_SERVER_PORT=9411
       - RESOURCE_SERVER_HOST=10.5.1.4
       - RESOURCE_SERVER_PORT=8086
       - API_GATEWAY_PORT=8888
       - SPRING_PROFILES_ACTIVE=local
   zipkin:
     image: openzipkin/zipkin
-    container_name: zipkin
     environment:
       # For demo
       - STORAGE_TYPE=mem
     ports:
       # Port used for the Zipkin UI and HTTP Api
       - 9411:9411
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.1.6
 volumes:
   mysql-db:
 networks:

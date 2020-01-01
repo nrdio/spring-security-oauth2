@@ -4,3 +4,5 @@ server:
 spring:
   application:
     name: authorization-server
+  zipkin:
+    base-url: http://${ZIPKIN_SERVER_HOST:localhost}:${ZIPKIN_SERVER_PORT:9411}
