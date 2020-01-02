@@ -47,23 +47,12 @@ authorization to client applications. Please refer to [RFC6749](https://tools.ie
 
 ### OAuth2 Roles 
 
-OAuth2 defines four roles.   
+OAuth2 defines four roles -
 
-   * resource owner
-      An entity capable of granting access to a protected resource.
-
-   * resource server
-      The server hosting the protected resources, capable of accepting
-      and responding to protected resource requests using access tokens.
-
-   * client
-      An application making protected resource requests on behalf of the
-      resource owner and with its authorization. 
-
-   * Authorization server
-      The server issuing access tokens to the client after successfully
-      authenticating the resource owner and obtaining authorization.
-
+  * **Resource Owner**: An entity capable of granting access to a protected resource
+  * **Resource Server**: The server hosting the protected resources, capable of accepting and responding to protected resource requests using access tokens.
+  * **Client**: An application making protected resource requests on behalf of the resource owner and with its authorization.
+  * **Authorization server**: The server issuing access tokens to the client after successfully authenticating the resource owner and obtaining authorization.
 
 ### Authorization Grant 
 
@@ -96,11 +85,11 @@ Params -
 * client_id - Clietx's client id received from authorization server
 * response_type - code
 * scope - custom payments scope
-* state - UUID to maintain state between the request and the callback
+* state - Opaque value to maintain state between the request and the callback
 * redirect_uri - Clientx's preregistered redirect URI  
  
  
-Authorization server will verify `userx` identity first. Use `userx` as username and `password` as password
+Authorization server will verify `userx` identity first. Use `userx` as username and `password` as password.
 
 ![authorization code I](doc/authorization-code-I.png)
 
@@ -114,10 +103,9 @@ Post authentication `userx` will be prompted to authorize requested scope by `cl
 
 Authorization server will redirect to `redirect_uri` of `clientx` with `code` and `state` as querystring params 
 
+```
 https://localhost:8080/oauth?code=QXTSKs&state=5ca75bd30
-
-
-Copy the code `QXTSKs` from the redirection uri from address bar of browser
+```
 
 #### Access Token Request
 
@@ -133,7 +121,7 @@ curl -i -X POST \
 
 #### Access Token Response
 
-Authorization server will verify validity of authorization code and optionally authenticate client (optional for public clients). It will issue access and refresh token to client.  
+Authorization server will verify validity of authorization code and optionally authenticate client (optional for public clients). Post verification it will issue access and refresh token to client.  
 
 ```
 HTTP/1.1 200 
@@ -149,7 +137,7 @@ Date: Mon, 30 Dec 2019 14:24:46 GMT
 {"access_token":"b6a0e021-802c-4b79-a835-4ac79ffd6599","token_type":"bearer","refresh_token":"b1dfaf04-d917-417a-9a95-8e12ad34c83a","expires_in":22960,"scope":"payments"}
 ```
 
-Now access_token can be used to call protected resource server endpoint ex. get userinfo
+Now access_token can be used to call protected resource server endpoint ex. userinfo
 
 ```
 curl -i -X GET \
@@ -236,7 +224,7 @@ curl -X POST \
 
 #### Access Token Response
 
-Authorization Server will verify client credentials and resource owners credentials. Post verifying credentials it issues access and refresh tokens. 
+Authorization Server will verify client credentials and resource owners credentials. Post verifying credentials it will issue access and refresh tokens. 
 
 ```
 HTTP/1.1 200 OK
