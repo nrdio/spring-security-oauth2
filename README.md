@@ -69,6 +69,9 @@ There on client can make request to Resource Server using access token as long a
 
 Refresh token can be used to obtain new access and refresh token. 
  
+#### Sequence Diagram
+
+![Authorization Code Grant Sequence Diagram](doc/sequence-diagram/authorization-code.png)
 
 #### Authorization Request
 
@@ -178,6 +181,10 @@ Authorization Server does not rely on client authentication. Instead it relies o
 Client constructs authorization request similar to authorization code flow except for response_type. Response type is token for implicit grant. 
 This grant type should be used only when other grant types can't be used as access token is exposed on user agent.  
 
+#### Sequence Diagram
+
+![Implicit Grant Sequence Diagram](doc/sequence-diagram/implicit-grant.png)
+
 #### Authorization Request
 
 ```
@@ -208,7 +215,10 @@ https://localhost:8080/oauth#access_token=62b7edcd-c05c-4409-8ae9-1dd6b839c1b5&t
 Normally used when resource owner has a trust relationship with client application. Resource owner enters his credentials in clint application
 and client applications exchange them for access token and optional refresh token with authorization server. This grant type should be used only
 if other grant types can't be used and resource owner trusts the client application.
-   
+
+#### Sequence Diagram
+
+![Resource Owner Password Credentials Grant Sequence Diagram](doc/sequence-diagram/password-grant.png)
 
 #### Access Token Request
 
@@ -244,6 +254,7 @@ Date: Mon, 30 Dec 2019 20:24:35 GMT
 
 Client can request access token using client credentials to access his own protected resources using this grant.
    
+![Resource Owner Password Credentials Grant Sequence Diagram](doc/sequence-diagram/client-credentials-grant.png)
 
 #### Access Token Request
 

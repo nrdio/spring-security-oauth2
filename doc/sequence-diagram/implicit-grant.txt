@@ -1,0 +1,44 @@
+sequenceDiagram
+  participant Resource Owner
+  participant Client App & User Agent
+  participant Authorization Server
+  participant Resource Server
+
+  Resource Owner->>+Client App & User Agent: Protected Resource
+  note right of Client App & User Agent: Client App requires <br> access to protected<br> resources of <br>Resource Owner
+  Client App & User Agent->>Client App & User Agent: Construct Authorization request with redirect_uri, state, scope, client_id
+  Client App & User Agent-->>-Resource Owner: Request Authorization
+
+  Resource Owner->>Client App & User Agent: Approve Authorization Request
+  activate Client App & User Agent
+  Client App & User Agent->>Client App & User Agent: Redirects to Authorization Server
+  Client App & User Agent->>Authorization Server: Authorization Request
+
+  activate Authorization Server
+  Authorization Server->>Authorization Server: Verify client id, redirect_uri and requested scopes
+
+  Authorization Server->>Client App & User Agent: Authentication dialog
+  deactivate Authorization Server
+
+  Client App & User Agent-->>Resource Owner: Authentication dialog
+  deactivate Client App & User Agent
+  
+  Resource Owner->>Client App & User Agent: Credentials
+  activate Client App & User Agent
+  Client App & User Agent->>+Authorization Server: Credentials
+  Authorization Server->>Authorization Server: Verify credentials
+  Authorization Server-->>-Client App & User Agent: Request Authorization
+  Client App & User Agent-->>-Resource Owner: Authorization Request
+
+  Resource Owner->>+Client App & User Agent: Review authorization request and approve it
+  Client App & User Agent->>+Authorization Server: Approval
+  Authorization Server->>Authorization Server: Generate authorization code
+  Authorization Server-->>-Client App & User Agent: Redirect to redirect_uri with access_token and state
+
+  Client App & User Agent->>+Resource Server: protected resource {access_token}
+  Resource Server->>+Authorization Server: check_token
+  Authorization Server->>Authorization Server: Verify token
+  Authorization Server-->>-Resource Server: Success
+  Resource Server-->>-Client App & User Agent: Protected resource
+  Client App & User Agent-->>Resource Owner: Protected resource
+  deactivate Client App & User Agent
